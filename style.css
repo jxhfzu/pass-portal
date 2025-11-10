@@ -26,8 +26,8 @@ body{margin:0;font-family:"Microsoft Yahei","PingFang SC",Arial,sans-serif;backg
 
 /* 新增的图片样式（替代原 .logo-circle） */
 .logo-img {
-  width: 112px;            /* 根据图片比例调整 */
-  height: 112px;
+  width: 200px;            /* 根据图片比例调整 */
+  height: auto;           /* 自动保持比例 */
   object-fit: contain;    /* 保持纵横比并居中显示 */
   border-radius: 6px;     /* 如需圆形去掉此行或改为50% */
   background: transparent;
@@ -52,10 +52,10 @@ body{margin:0;font-family:"Microsoft Yahei","PingFang SC",Arial,sans-serif;backg
   color: rgba(255,255,255,.14);
   line-height: 1;
   position: absolute;
-  right: 2px;
-  top: 8px;
+  right: 6px;
+  top: 38px;
   pointer-events: none;
-
+  z-index: 1;
   /* 使文字为斜体 */
   font-style: italic;      /* ✅ 斜体 */
 
@@ -70,13 +70,13 @@ body{margin:0;font-family:"Microsoft Yahei","PingFang SC",Arial,sans-serif;backg
 .topbar {
   width: 100%;
   max-width: 420px;
-  margin-top: 14px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: #fff;
   position: relative;
-  padding: 10px 8px 24px; /* 扩大下内边距，给 big-title 留空间 */
+  padding: 8px 8px 20px;   /* ✅ 减少底部留白 */
 }
 
 /* 编辑表单 */
@@ -183,6 +183,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .topbar,.editor,.pass-card{max-width:95%}
   .big-title{font-size:56px}
 }
+
 
 
 
