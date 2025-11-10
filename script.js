@@ -1,9 +1,9 @@
 // 默认值（用于首次没有 query 时）
 const DEFAULTS = {
   name: "金贤洪",
-  target: "戴逸清",
+  target: "罗福斌",
   dept: "土木工程学院",
-  period: "11-10 00:00 至 11-12 23:59",
+  period: "01-01 00:00 至 12-30 23:59",
   vehicle: "驾驶汽车 (闽A220AG)",
   campus: "所有校区"
 };
@@ -165,5 +165,6 @@ startClock();
 
 // 启动：优先从 URL 参数初始化
 initFromQuery();
+
 
 
