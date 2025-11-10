@@ -94,11 +94,13 @@ function applyValuesToCard(vals){
 function makeQRCode(text){
   out.qrcode.innerHTML = '';
   new QRCode(out.qrcode, {
-    text: text,
-    width: 180,
-    height: 180,
-    correctLevel: QRCode.CorrectLevel.H
-  });
+  text: text,
+  width: 180,
+  height: 180,
+  colorDark: "#1b8d6b",    // 深绿色二维码
+  colorLight: "#ffffff",   // 白色背景
+  correctLevel: QRCode.CorrectLevel.H
+});
   // 可以同时生成下载链接（如果需要）
 }
 
@@ -163,3 +165,4 @@ startClock();
 
 // 启动：优先从 URL 参数初始化
 initFromQuery();
+
