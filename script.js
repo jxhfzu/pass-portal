@@ -97,7 +97,7 @@ function makeQRCode(text){
   text: text,
   width: 180,
   height: 180,
-  colorDark: "#1b8d6b",    // 深绿色二维码
+  colorDark: "#35ae81",    // 深绿色二维码
   colorLight: "#ffffff",   // 白色背景
   correctLevel: QRCode.CorrectLevel.H
 });
@@ -165,4 +165,5 @@ startClock();
 
 // 启动：优先从 URL 参数初始化
 initFromQuery();
+
 
