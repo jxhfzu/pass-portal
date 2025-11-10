@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>通行证生成 - 606520.xyz</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- QRCode.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">通行证</div>
+    </header>
+
+    <main class="card">
+      <div class="left">
+        <div class="avatar"></div>
+      </div>
+
+      <div class="right">
+        <label>访客姓名</label>
+        <input id="input-name" placeholder="请输入姓名（例如：金贤洪）" />
+
+        <label>拜访对象（可选）</label>
+        <input id="input-target" placeholder="可填写被访人或单位" />
+
+        <div class="controls">
+          <button id="btn-generate">生成通行证</button>
+          <button id="btn-clear" class="muted">清除</button>
+        </div>
+
+        <div class="display">
+          <div class="big-name" id="display-name">—</div>
+          <div id="display-time" class="time">--:--:--</div>
+        </div>
+
+        <div id="qrcode-wrap">
+          <div id="qrcode"></div>
+        </div>
+
+        <div class="actions">
+          <a id="download-btn" href="#" download="qrcode.png" class="muted">下载二维码</a>
+          <span class="hint">或用手机扫码进入通行链接</span>
+        </div>
+      </div>
+    </main>
+
+    <footer class="foot">© 606520.xyz</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

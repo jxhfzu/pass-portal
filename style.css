@@ -1,0 +1,78 @@
+:root{
+  --green: #2aa67a;
+  --bg: #eaf5ef;
+  --card: #ffffff;
+  --muted: #9aa6a0;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: "Microsoft Yahei", Arial, sans-serif;
+  background:var(--bg);
+  display:flex;
+  min-height:100vh;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.wrap{width:980px; max-width:95%;}
+header{display:flex;align-items:center; margin-bottom:12px}
+.logo{font-weight:700; color:var(--green); font-size:28px}
+.card{
+  display:flex;
+  background:var(--card);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 8px 30px rgba(0,0,0,0.08);
+}
+.left{
+  width:220px;
+  background:linear-gradient(180deg,#ecf9f3,#e6f6ee);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.avatar{
+  width:120px; height:140px;
+  background:linear-gradient(#cfece0,#bfe6d6);
+  border-radius:6px;
+}
+.right{
+  flex:1;
+  padding:22px;
+}
+label{display:block; font-size:13px; color:var(--muted); margin-top:6px}
+input{
+  width:100%;
+  padding:10px 12px;
+  margin-top:6px;
+  border-radius:8px;
+  border:1px solid #e6efea;
+  background:#fbfffb;
+  font-size:15px;
+}
+.controls{margin-top:10px; display:flex; gap:8px}
+button{
+  padding:8px 14px;
+  border-radius:8px;
+  border:0;
+  background:var(--green);
+  color:white;
+  cursor:pointer;
+  font-weight:600;
+}
+button.muted{background:#f2f2f2; color:#333}
+.display{margin-top:14px}
+.big-name{font-size:22px; font-weight:700; color:#2b6b50}
+.time{color:var(--muted); margin-top:6px}
+#qrcode-wrap{margin-top:18px; display:flex; gap:12px; align-items:center}
+#qrcode{width:200px; height:200px; padding:8px; background:#fff; border-radius:8px; border:6px solid #ffd37a}
+.actions{margin-top:10px; display:flex; gap:12px; align-items:center}
+.muted{color:var(--muted); text-decoration:none}
+.hint{color:var(--muted); font-size:13px}
+.foot{margin-top:12px; color:var(--muted); text-align:center; font-size:13px}
+@media(max-width:720px){
+  .card{flex-direction:column}
+  .left{width:100%}
+}
