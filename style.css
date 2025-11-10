@@ -57,7 +57,14 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 /* 二维码 */
 .qrcode-wrap{margin-top:16px;display:flex;justify-content:center}
-#qrcode{width:210px;height:210px;background:#fff;border:6px solid var(--accent);border-radius:12px;padding:8px}
+#qrcode {
+  width: 210px;
+  height: 210px;
+  background: #fff;
+  border: 3px solid #fbb42c;   /* ✅ 改细为 3px */
+  border-radius: 10px;         /* 略微柔和圆角 */
+  padding: 6px;                /* 让内部留白也协调一点 */
+}
 
 /* 提示与信息行 */
 .hint-line{margin-top:14px;text-align:center;color:#cfcfcf;font-size:12px;display:flex;justify-content:center;gap:10px}
@@ -76,6 +83,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .topbar,.editor,.pass-card{max-width:95%}
   .big-title{font-size:56px}
 }
+
 
 
 
