@@ -130,7 +130,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .pass-card {
     margin-top: 18px;    /* 手机端保守下移以避免过多滚动 */
   }
-
+}
 .card-top{display:flex;gap:16px;align-items:center}
 .avatar {
   width: 82px;
@@ -181,4 +181,5 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 @media (max-width:460px){
   .topbar,.editor,.pass-card{max-width:95%}
   .big-title{font-size:56px}
+
 }
