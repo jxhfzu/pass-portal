@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <!-- 背景透明 -->
+  <rect width="120" height="120" fill="transparent"/>
+
+  <!-- 倾斜45°的十字（形成“X”形） -->
+  <!-- 使用 rotate(45 60 60) 以中心(60,60)旋转 -->
+  <g transform="rotate(45 60 60)">
+    <rect x="58" y="15" width="4" height="90" rx="2" fill="#7fcfb8"/>
+    <rect x="15" y="58" width="90" height="4" rx="2" fill="#7fcfb8"/>
+  </g>
+
+  <!-- 四个“福”字：位于“X”的四个端点 -->
+  <text x="10"  y="26" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif"
+        font-size="16" font-weight="700" fill="#dff7ee">福</text>
+  <text x="110" y="26" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif"
+        font-size="16" font-weight="700" fill="#dff7ee" text-anchor="end">福</text>
+  <text x="10"  y="116" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif"
+        font-size="16" font-weight="700" fill="#dff7ee">福</text>
+  <text x="110" y="116" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif"
+        font-size="16" font-weight="700" fill="#dff7ee" text-anchor="end">福</text>
+
+  <!-- 可选：中心点淡淡的圆点，使图案更有节奏感 -->
+  <circle cx="60" cy="60" r="1.5" fill="#7fcfb8" opacity="0.6"/>
+</svg>
