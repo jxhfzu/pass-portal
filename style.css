@@ -15,13 +15,68 @@ body{margin:0;font-family:"Microsoft Yahei","PingFang SC",Arial,sans-serif;backg
     var(--primary);
 }
 
-/* header */
-.topbar{width:100%;max-width:420px;margin-top:12px;display:flex;align-items:center;justify-content:space-between;color:#fff;position:relative;padding:6px 8px}
-.logo-block{display:flex;align-items:center;gap:10px}
-.logo-circle{width:46px;height:46px;background:#fff;color:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px}
-.logo-text .cn{font-size:18px;font-weight:600}
-.logo-text .en{font-size:11px;opacity:.9}
-.big-title{font-size:64px;font-weight:700;color:rgba(255,255,255,.14);position:absolute;right:2px;top:8px;pointer-events:none}
+/* ---------- Header / logo ---------- */
+
+/* logo 图片样式 */
+.logo-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 新增的图片样式（替代原 .logo-circle） */
+.logo-img {
+  width: 56px;            /* 根据图片比例调整 */
+  height: 56px;
+  object-fit: contain;    /* 保持纵横比并居中显示 */
+  border-radius: 6px;     /* 如需圆形去掉此行或改为50% */
+  background: transparent;
+}
+
+/* logo 文字 */
+.logo-text .cn {
+  font-size: 18px;
+  font-weight: 600;
+}
+.logo-text .en {
+  font-size: 11px;
+  letter-spacing: .04em;
+  opacity: .95;
+}
+
+/* 大字 “通行证” 样式（斜体） */
+.big-title {
+  font-size: 64px;
+  font-weight: 700;
+  color: rgba(255,255,255,.14);
+  line-height: 1;
+  position: absolute;
+  right: 2px;
+  top: 8px;
+  pointer-events: none;
+
+  /* 使文字为斜体 */
+  font-style: italic;      /* ✅ 斜体 */
+
+  /* 轻微下移以给空间，若需要更显著调整可改 top 值 */
+  transform: translateY(2px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  z-index: 1;
+}
+
+/* 为了保证通行证完整显示，增加 header 的上内边距 （顶部留白）*/
+.topbar {
+  width: 100%;
+  max-width: 420px;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  position: relative;
+  padding: 10px 8px 24px; /* 扩大下内边距，给 big-title 留空间 */
+}
 
 /* 编辑表单 */
 .editor{width:100%;max-width:420px;margin-top:12px;padding:10px}
@@ -36,7 +91,46 @@ button#btn-generate{background:var(--primary);color:#fff}
 button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 /* 白色卡片 */
-.pass-card{width:100%;max-width:420px;background:var(--card);border-radius:18px;margin-top:12px;padding:18px 18px 24px;box-shadow:0 16px 35px rgba(0,0,0,0.08)}
+
+/* ---------- 白色卡片下移调整 ---------- */
+
+/* 把 pass-card 下移更多，显示完整大的 "通行证" */
+.pass-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 18px;
+  margin-top: 18px;      /* 原先可能是 12px，改为更大 */
+  padding: 18px 18px 26px;
+  box-shadow: 0 16px 35px rgba(0,0,0,0.08);
+}
+
+/* 如果你想更明显地下移，请增大 margin-top */
+@media (min-width: 700px) {
+  .pass-card {
+    margin-top: 30px;    /* 桌面更大视窗下多留白 */
+  }
+}
+
+/* 手机端：避免太多空白但仍保留可见通行证字 */
+@media (max-width: 460px) {
+  .big-title {
+    font-size: 56px;
+    top: 10px;
+  }
+  .topbar {
+    padding: 12px 8px 16px;
+  }
+  .pass-card {
+    margin-top: 18px;    /* 手机端保守下移以避免过多滚动 */
+  }
+
+  /* 如果 logo 图片在小屏看起来太大可缩小 */
+  .logo-img { width: 48px; height: 48px; }
+}
+
+
+
 .card-top{display:flex;gap:16px;align-items:center}
 .avatar {
   width: 82px;
@@ -88,6 +182,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .topbar,.editor,.pass-card{max-width:95%}
   .big-title{font-size:56px}
 }
+
 
 
 
