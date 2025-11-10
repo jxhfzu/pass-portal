@@ -1,6 +1,6 @@
 /* 通用 */
 :root{
-  --primary:#29a982;
+  --primary:#55ba95;
   --accent:#f4b63e;
   --muted:#6f7d75;
   --card:#ffffff;
@@ -184,6 +184,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
 
