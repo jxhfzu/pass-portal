@@ -1,11 +1,38 @@
 /* 通用 */
 :root{
-  --primary:#55ba95;
+  /* 浅绿色主色（可替换为你喜欢的浅绿色） */
+  --primary: #55ba95;   /* 页面主色（较浅） */
+  --pattern-dark: #7fcfb8;  /* 十字颜色 */
+  --pattern-light: #dff7ee; /* “福”字颜色 */
   --accent:#f4b63e;
   --muted:#6f7d75;
   --card:#ffffff;
   --bg:#e6f5ee;
 }
+
+/* 用 pattern.svg 作为重复图案，铺满并叠在主色上 */
+.page-bg{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-bottom:28px;
+
+  /* 主色背景（浅绿色） */
+  background-color: var(--primary);
+
+  /* 叠加的图案：pattern.svg 会重复 */
+  background-image:
+    linear-gradient(135deg, rgba(255,255,255,0.03) 25%, transparent 25%) -20px 0/40px 40px,
+    linear-gradient(225deg, rgba(255,255,255,0.03) 25%, transparent 25%) -20px 0/40px 40%,
+    url('pattern.svg'); /* <-- 引用你保存的 SVG 文件 */
+
+  /* 控制平铺与大小：120px 对应 SVG 的宽度/高度 */
+  background-repeat: repeat;
+  background-size: 120px 120px, 120px 120px, 120px 120px; /* 三层背景都设尺寸，确保对齐 */
+  background-position: 0 0, 0 0, 0 0;
+}
+
 *{box-sizing:border-box}
 body{margin:0;font-family:"Microsoft Yahei","PingFang SC",Arial,sans-serif;background:var(--bg)}
 .page-bg{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding-bottom:28px;
@@ -184,6 +211,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
 
