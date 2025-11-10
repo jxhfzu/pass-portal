@@ -131,12 +131,6 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
     margin-top: 18px;    /* 手机端保守下移以避免过多滚动 */
   }
 
-  /* 如果 logo 图片在小屏看起来太大可缩小 */
-  .logo-img { width: 48px; height: 48px; }
-}
-
-
-
 .card-top{display:flex;gap:16px;align-items:center}
 .avatar {
   width: 82px;
@@ -188,6 +182,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .topbar,.editor,.pass-card{max-width:95%}
   .big-title{font-size:56px}
 }
+
 
 
 
