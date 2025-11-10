@@ -48,7 +48,7 @@ body{margin:0;font-family:"Microsoft Yahei","PingFang SC",Arial,sans-serif;backg
 /* 大字 “通行证” 样式（斜体） */
 .big-title {
   font-size: 64px;
-  font-weight: 800;
+  font-weight: 1200;
   color: rgba(255,255,255,.14);
   line-height: 1;
   position: absolute;
@@ -183,5 +183,6 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
