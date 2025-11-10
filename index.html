@@ -22,47 +22,6 @@
       <div class="big-title">通行证</div>
     </header>
 
-    <!-- 编辑表单（可折叠/展开） -->
-    <section class="editor" id="editor">
-      <div class="editor-inner">
-        <div class="field-row">
-          <label>访客姓名</label>
-          <input id="f_name" type="text" placeholder="例如：金贤洪">
-        </div>
-
-        <div class="field-row">
-          <label>拜访对象</label>
-          <input id="f_target" type="text" placeholder="例如：戴逸清">
-        </div>
-
-        <div class="field-row">
-          <label>所在部门</label>
-          <input id="f_dept" type="text" placeholder="例如：土木工程学院">
-        </div>
-
-        <div class="field-row">
-          <label>访问时段</label>
-          <input id="f_period" type="text" placeholder="例如：11-10 00:00 至 11-12 23:59">
-        </div>
-
-        <div class="field-row">
-          <label>通行方式</label>
-          <input id="f_vehicle" type="text" placeholder="例如：驾驶汽车 (闽A220AG)">
-        </div>
-
-        <div class="field-row">
-          <label>访问校区</label>
-          <input id="f_campus" type="text" placeholder="例如：所有校区">
-        </div>
-
-        <div class="editor-actions">
-          <button id="btn-generate">生成通行证</button>
-          <button id="btn-clear" class="muted">清除</button>
-          <button id="btn-toggle" class="muted">隐藏编辑区</button>
-        </div>
-      </div>
-    </section>
-
     <!-- 白色卡片（展示） -->
     <main class="pass-card" id="pass-card">
       <div class="card-top">
@@ -125,6 +84,48 @@
     </footer>
   </div>
 
+ <!-- 编辑表单（可折叠/展开） -->
+    <section class="editor" id="editor">
+      <div class="editor-inner">
+        <div class="field-row">
+          <label>访客姓名</label>
+          <input id="f_name" type="text" placeholder="例如：金贤洪">
+        </div>
+
+        <div class="field-row">
+          <label>拜访对象</label>
+          <input id="f_target" type="text" placeholder="例如：戴逸清">
+        </div>
+
+        <div class="field-row">
+          <label>所在部门</label>
+          <input id="f_dept" type="text" placeholder="例如：土木工程学院">
+        </div>
+
+        <div class="field-row">
+          <label>访问时段</label>
+          <input id="f_period" type="text" placeholder="例如：11-10 00:00 至 11-12 23:59">
+        </div>
+
+        <div class="field-row">
+          <label>通行方式</label>
+          <input id="f_vehicle" type="text" placeholder="例如：驾驶汽车 (闽A220AG)">
+        </div>
+
+        <div class="field-row">
+          <label>访问校区</label>
+          <input id="f_campus" type="text" placeholder="例如：所有校区">
+        </div>
+
+        <div class="editor-actions">
+          <button id="btn-generate">生成通行证</button>
+          <button id="btn-clear" class="muted">清除</button>
+          <button id="btn-toggle" class="muted">隐藏编辑区</button>
+        </div>
+      </div>
+    </section>
+  
   <script src="script.js"></script>
 </body>
 </html>
+
