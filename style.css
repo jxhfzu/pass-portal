@@ -61,9 +61,14 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   width: 210px;
   height: 210px;
   background: #fff;
-  border: 3px solid #fbb42c;   /* ✅ 改细为 3px */
-  border-radius: 10px;         /* 略微柔和圆角 */
-  padding: 6px;                /* 让内部留白也协调一点 */
+  border: 3px solid #f4b63e;      /* 边框细化为 3px */
+  border-radius: 10px;
+  padding: 6px;
+  display: flex;                  /* ✅ 用 flex 居中 */
+  align-items: center;            /* 垂直居中 */
+  justify-content: center;        /* 水平居中 */
+  box-sizing: border-box;         /* 防止边框撑大整体 */
+  margin: 0 auto;                 /* 保证容器在父级居中 */
 }
 
 /* 提示与信息行 */
@@ -83,6 +88,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .topbar,.editor,.pass-card{max-width:95%}
   .big-title{font-size:56px}
 }
+
 
 
 
