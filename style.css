@@ -48,7 +48,8 @@ body{margin:0;font-family:"Microsoft Yahei","PingFang SC",Arial,sans-serif;backg
 /* 大字 “通行证” 样式（斜体） */
 .big-title {
   font-size: 64px;
-  font-weight: 1200;
+  font-weight: 900;      /*CSS 的合法粗细范围是100~900,所以900已经是最粗的合法值，当你写 font-weight: 1200; 时，浏览器会自动回退到字体文件默认的粗细（通常是 400），
+所以你看到字体变“更细了”。 */
   color: rgba(255,255,255,.14);
   line-height: 1;
   position: absolute;
@@ -183,6 +184,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
 
