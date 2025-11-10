@@ -26,11 +26,12 @@ body{margin:0;font-family:"Microsoft Yahei","PingFang SC",Arial,sans-serif;backg
 
 /* 新增的图片样式（替代原 .logo-circle） */
 .logo-img {
-  width: 56px;            /* 根据图片比例调整 */
-  height: 56px;
+  width: 112px;            /* 根据图片比例调整 */
+  height: 112px;
   object-fit: contain;    /* 保持纵横比并居中显示 */
   border-radius: 6px;     /* 如需圆形去掉此行或改为50% */
   background: transparent;
+  display: block;
 }
 
 /* logo 文字 */
@@ -182,6 +183,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .topbar,.editor,.pass-card{max-width:95%}
   .big-title{font-size:56px}
 }
+
 
 
 
