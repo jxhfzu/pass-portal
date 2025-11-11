@@ -198,33 +198,64 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 .info-row .right{color:#333;font-weight:600;font-size:14px}
 
 /* 安全提示与页脚 */
+/* 包裹两行文本的容器：保持宽度等于内部最长一行（inline-block 的特性）*/
 .safe-block {
-  text-align: center;
   margin-top: 14px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;   /* 将 inline-block 居中 */
 }
 
+/* 这个容器宽度等于最长子项，保证两行左右边对齐 */
+.safe-text {
+  display: inline-block;   /* 宽度 = max(child widths) */
+  text-align: center;
+  line-height: 1.1;
+}
+
+/* 两行都占满容器宽度，便于“头尾对齐” */
+.safe-cn,
+.safe-en {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;    /* 防止自动换行打断对齐 */
+}
+
+/* 中文行样式 */
 .safe-cn {
   color: #199c69;
   font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.5px;   /* ✅ 微调字距，避免两端挤 */
-  text-align: center;
-  white-space: nowrap;     /* ✅ 防止中英文换行导致错位 */
+  letter-spacing: 0.3px;
+  /* 避免 CJK 环境把西文标点强制全角化 */
+  font-variant-east-asian: proportional-width;
+  -webkit-font-variant-east-asian: proportional-width;
 }
 
+/* 英文行样式（可微调字距以更好匹配中文宽度）*/
 .safe-en {
   color: #7aa694;
   font-size: 13px;
-  letter-spacing: 0.5px;
-  margin-top: 2px;
-  text-align: center;
-  white-space: nowrap;
-  width: 100%;
-  display: block;
+  margin-top: 6px;
+  letter-spacing: 0.35px; /* 根据需要微调 */
+  font-weight: 500;
+  font-variant-east-asian: proportional-width;
 }
+
+/* 强制把包裹逗号的 span 使用西文字体，确保半角逗号 glyph */
+.safe-cn .ascii {
+  font-family: Arial, "Helvetica Neue", "Noto Sans", sans-serif;
+  font-variant-east-asian: proportional-width;
+  font-size: 0.95em;     /* 大小与中文视觉相协调（按需调） */
+  display: inline-block;
+  transform: translateY(0.06em); /* 微调竖直位置，和中文基线更贴合 */
+}
+
+/* 可选：在非常小屏上适当缩字体 */
+@media (max-width: 360px) {
+  .safe-cn { font-size: 15px; }
+  .safe-en { font-size: 12px; letter-spacing: 0.25px; }
+}
+
 
 .footer{margin-top:12px;color:rgba(255,255,255,.7);font-size:12px;text-align:center}
 
@@ -234,6 +265,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
 
