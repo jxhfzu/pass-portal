@@ -213,42 +213,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 
 
-/* .hint-line {
-  margin-top: 14px;
-  text-align: center;
-  color: #cfcfcf;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap; /* ✅ 防止文字换行 */
-} */
-
-/* 左右虚线
-.hint-line::before,
-.hint-line::after {
-  content: "";
-  flex: 1;                     /* 线条自动伸缩 */
-  border-bottom: 1px dashed #dcdcdc;  /* ✅ 改为虚线 */
-  margin: 0 10px;              /* 与文字间距 */
-}*/
-
-/* 文字本身 
-.hint-line span {
-  display: inline-block;
-  line-height: 1.2;
-}*/
-
-
-
-
-
-
 /* 安全提示与页脚 */
-/* .safe-block{text-align:center;margin-top:14px}
-.safe-cn{color:#199c69;font-size:16px;font-weight:700;margin-bottom:2px}
-.safe-en{color:#7aa694;font-size:12px}*/
-
 .safe-block {
   display: block;
   width: 100%;
@@ -320,6 +285,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
 
