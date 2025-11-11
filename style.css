@@ -232,44 +232,44 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 
 
-/* ---------- 提示行：两侧虚线 + 文字强制不换行 ---------- */
+
+/* ---------- 提示行：两侧虚线 + 文字强制不换行（稳定居中） ---------- */
 .hint-line {
   margin-top: 14px;
   text-align: center;
   color: #cfcfcf;
   font-size: 12px;
+
   display: flex;
-  align-items: center;
+  align-items: center;    /* 关键：将子项垂直居中 */
   justify-content: center;
-  white-space: nowrap;       /* 强制不换行 */
-  gap: 12px;                 /* 中间文字与伪线间距 */
+  white-space: nowrap;    /* 强制不换行 */
+  gap: 12px;
+  padding: 0;             /* 避免 padding 影响基线 */
 }
 
-/* 用伪元素绘制左右虚线（flex:1 会自动拉伸） */
+/* 伪元素用 height:0 + border-top 绘制虚线，配合 align-items:center 保证线条在中线 */
 .hint-line::before,
 .hint-line::after {
   content: "";
   flex: 1 1 auto;
-  border-bottom: 1px dashed #dcdcdc; /* 虚线 */
-  margin: 0;             /* 与文字的间距由 .hint-line 的 gap 控制 */
-  min-width: 24px;       /* 防止在超窄屏上线条完全消失 */
-  transform: translateY(0.15em); /* ✅ 向上微调，让线条与文字居中对齐，一般 0.12em ~ 0.18em 是最自然的范围 */
+  min-width: 24px;
+  height: 0;                              /* 关键：高度为 0 */
+  border-top: 1px dashed #dcdcdc;         /* 用 border-top（而不是 border-bottom） */
+  margin: 0;                              /* 间距由父容器 gap 控制 */
+  box-sizing: border-box;
 }
 
-/* 中间文字样式（保持 inline-block 以便对齐） */
+/* 中间文字 */
 .hint-line > span {
   display: inline-block;
   line-height: 1.2;
-  padding: 0 6px;        /* 文字左右的呼吸空间 */
+  padding: 0 6px;
   white-space: nowrap;   /* 再次保证不换行 */
   font-size: 12px;
   color: #cfcfcf;
 }
 
-/* 极窄屏上的安全保护：如果父容器宽度太窄，缩小字体而不换行 */
-@media (max-width: 320px) {
-  .hint-line > span { font-size: 11px; padding: 0 4px; }
-}
 
 
 
@@ -331,6 +331,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
 
