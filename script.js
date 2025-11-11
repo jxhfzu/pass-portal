@@ -4,8 +4,8 @@ const DEFAULTS = {
   target: "罗福斌",
   dept: "土木工程学院",
   period: "01-01 00:00 至 12-30 23:59",
-  vehicle: "驾驶汽车 (闽A220AG)",
-  campus: "所有校区"
+  vehicle: "驾驶汽车 (闽A22A0G)",
+  campus: "所有校区,"
 };
 
 // 简单工具：读 query
@@ -163,48 +163,13 @@ function startClock(){
 }
 startClock();
 
-// ---------- 动态调整 hint-line 的伪元素 gap（使虚线精确截断到文字左右） ----------
-function adjustHintLine() {
-  const hint = document.querySelector('.hint-line');
-  if (!hint) return;
-  const span = hint.querySelector('span');
-  if (!span) return;
-
-  // 测量 span 的实际宽度（包含内边距）
-  const spanWidth = Math.round(span.getBoundingClientRect().width);
-
-  // 将测量值设置到 CSS 变量 --hint-gap（单位 px）
-  hint.style.setProperty('--hint-gap', spanWidth + 'px');
-
-  // 若需要，可根据容器宽度设置最小/最大值保护
-  // const containerWidth = hint.getBoundingClientRect().width;
-  // if (spanWidth > containerWidth - 40) {
-  //   hint.style.setProperty('--hint-gap', Math.max(20, containerWidth - 40) + 'px');
-  // }
-}
-
-// 初次运行（在 DOM 和字体加载后）
-window.addEventListener('load', function() {
-  // run after a tiny delay to allow layout/fonts to stabilize on some devices
-  setTimeout(adjustHintLine, 50);
-});
-
-// resize 时重新计算（带节流）
-let _hintResizeTimer = null;
-window.addEventListener('resize', function(){
-  clearTimeout(_hintResizeTimer);
-  _hintResizeTimer = setTimeout(adjustHintLine, 100);
-});
-
-// 如果你的页面会动态修改提示文字，也可以调用 window.adjustHintLine()
-window.adjustHintLine = adjustHintLine;
-
 
 
 
 
 // 启动：优先从 URL 参数初始化
 initFromQuery();
+
 
 
 
