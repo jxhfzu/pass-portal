@@ -1,9 +1,14 @@
 /* 通用 */
 :root{
-  --primary: #55ba95;   /* 浅绿色主色 */
+  /* 浅绿色主色（可替换为你喜欢的浅绿色） */
+  --primary: #55ba95;   /* 页面主色（较浅） */
+  --accent:#f4b63e;
+  --muted:#6f7d75;
+  --card:#ffffff;
+  --bg:#e6f5ee;
 }
 
-/* 单一的 .page-bg 定义，pattern 放在最上层 */
+/* 用 background.svg 作为重复图案，铺满并叠在主色上 */
 .page-bg{
   min-height:100vh;
   display:flex;
@@ -14,19 +19,26 @@
   /* 主色背景（浅绿色） */
   background-color: var(--primary);
 
-  /* 把图案放到最上层（第一个项），然后加两层细微渐变 */
+  /* 叠加的图案：background.svg 会重复 */   /* 把图案放到最上层（第一个项），这样不会被其他渐变遮挡 */
   background-image:
-    url('background.svg'),
+    url('background.svg'),/* <-- 引用你保存的 SVG 文件 */
     linear-gradient(135deg, rgba(255,255,255,0.03) 25%, transparent 25%) -20px 0/40px 40px,
     linear-gradient(225deg, rgba(255,255,255,0.03) 25%, transparent 25%) -20px 0/40px 40px;
 
-  background-repeat: repeat, repeat, repeat;
-  background-size: 120px 120px, 40px 40px, 40px 40px;
+  /* 控制平铺与大小：120px 对应 SVG 的宽度/高度 */
+    background-repeat: repeat, repeat, repeat;
+  background-size: 120px 120px, 40px 40px, 40px 40px;/* 三层背景都设尺寸，确保对齐 */
   background-position: 0 0, 0 0, 0 0;
 }
 
-
-
+*{box-sizing:border-box}
+body{margin:0;font-family:"Microsoft Yahei","PingFang SC",Arial,sans-serif;background:var(--bg)}
+.page-bg{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding-bottom:28px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.03) 25%, transparent 25%) -20px 0/40px 40px,
+    linear-gradient(225deg, rgba(255,255,255,0.03) 25%, transparent 25%) -20px 0/40px 40px,
+    var(--primary);
+}
 
 /* ---------- Header / logo ---------- */
 
@@ -180,33 +192,10 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 }
 
 /* 提示与信息行 */
-/* 提示行（虚线 + 一行显示） */
-.hint-line {
-  margin-top: 14px;
-  text-align: center;
-  color: #cfcfcf;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap; /* ✅ 防止文字换行 */
-}
-
-/* 左右虚线 */
-.hint-line::before,
-.hint-line::after {
-  content: "";
-  flex: 1;                     /* 线条自动伸缩 */
-  border-bottom: 1px dashed #dcdcdc;  /* ✅ 改为虚线 */
-  margin: 0 10px;              /* 与文字间距 */
-}
-
-/* 文字本身 */
-.hint-line span {
-  display: inline-block;
-  line-height: 1.2;
-}
-
+.hint-line{margin-top:14px;text-align:center;color:#cfcfcf;font-size:12px;display:flex;justify-content:center;gap:10px}
+.info-row{display:flex;justify-content:space-between;border-bottom:1px solid #eff2f3;padding:12px 4px}
+.info-row .left{color:#5b6a66;font-size:14px}
+.info-row .right{color:#333;font-weight:600;font-size:14px}
 
 /* 安全提示与页脚 */
 .safe-block{text-align:center;margin-top:14px}
@@ -221,52 +210,9 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 }
 
-/* 页脚整体 */
-.footer {
-  margin-top: 16px;
-  color: rgba(255,255,255,.85);
-  font-size: 13px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 0 16px;
-}
 
-/* 内部内容块，控制文字和 logo 的布局 */
-.footer-inner {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;             /* logo 与文字间距 */
-}
 
-/* logo 样式 */
-.footer-logo {
-  height: 18px;       /* 手机和中小屏的默认值 */
-  width: auto;
-  vertical-align: middle;
-  object-fit: contain;
-  opacity: 0.95;
-  filter: brightness(0) invert(1);  /* ✅ 自动变白以适应绿色背景 */
-  margin-right: 6px;     /* ✅ 与文字保持舒适间距 */
-  transform: translateY(1px); /* ✅ 微调垂直对齐 */
-}
 
-/* 文字 */
-.footer-text {
-  font-weight: 500;
-  white-space: nowrap;  /* 防止换行 */
-}
-
-/* 手机端：微微放大 */
-@media (max-width: 480px) {
-  .footer-logo { height: 20px; transform: translateY(0.5px); }
-}
-
-/* 桌面端（更宽屏）放大 */
-@media (min-width: 900px) {
-  .footer-logo { height: 26px; transform: translateY(0.5px); }
-}
 
 
 
