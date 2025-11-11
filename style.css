@@ -231,11 +231,14 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 /* logo 样式 */
 .footer-logo {
-  height: 18px;         /* ✅ 控制高度（建议 16~20px） */
-  width: auto;          /* 按原比例缩放 */
+  height: 14px;          /* ✅ 调小整体高度 */
+  width: auto;           
   vertical-align: middle;
   object-fit: contain;
-  opacity: 0.9;         /* 稍微淡一点以协调背景 */
+  opacity: 0.9;
+  filter: brightness(0) invert(1);  /* ✅ 自动变白以适应绿色背景 */
+  margin-right: 6px;     /* ✅ 与文字保持舒适间距 */
+  transform: translateY(1px); /* ✅ 微调垂直对齐 */
 }
 
 /* 文字 */
@@ -249,6 +252,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .footer-logo { height: 20px; }
   .footer-text { font-size: 13px; }
 }
+
 
 
 
