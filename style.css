@@ -198,68 +198,9 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 .info-row .right{color:#333;font-weight:600;font-size:14px}
 
 /* 安全提示与页脚 */
-/* 外层：居中显示宽度由 JS 控制 */
-.safe-block {
-  margin-top: 14px;
-  text-align: center;
-}
-
-/* 内层容器：宽度将被 JS 设为两行的最大宽度 */
-.safe-text {
-  display: inline-block;
-  text-align: center;
-  line-height: 1.1;
-  /* 平滑过渡（可选）让变化不突兀 */
-  transition: width 120ms ease;
-}
-
-/* 两行都占满容器宽度，便于左右头尾对齐 */
-.safe-cn,
-.safe-en {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  white-space: nowrap; /* 防止换行 */
-}
-
-/* 中文行：统一字体族（包含中英），但逗号会单独用 ascii span 强制西文字体 */
-.safe-cn {
-  color: #199c69;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.2px;
-  /* 给中文优先字体（若手机有 PingFang/系统字体会优先）*/
-  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
-  -webkit-font-variant-east-asian: proportional-width;
-  font-variant-east-asian: proportional-width;
-}
-
-/* 英文行：与中文行使用相似的字体线性与字间，以便长度更接近 */
-.safe-en {
-  color: #7aa694;
-  font-size: 13px;
-  margin-top: 6px;
-  letter-spacing: 0.35px;
-  font-weight: 500;
-  font-family: "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  -webkit-font-variant-east-asian: proportional-width;
-  font-variant-east-asian: proportional-width;
-}
-
-/* 关键：强制逗号使用西文字体 glyph，防止 CJK 排版替换或不同渲染 */
-.safe-cn .ascii {
-  font-family: "Helvetica Neue", Arial, "Noto Sans", sans-serif; /* 西文字体 */
-  display: inline-block;
-  font-size: 0.95em;             /* 与中文字号协调 */
-  line-height: 1;
-  transform: translateY(0.03em); /* 竖直微调，如需可改为 0.05em / 0 */
-  letter-spacing: 0;             /* 保证逗号不因字间距扩展 */
-  -webkit-font-variant-east-asian: proportional-width;
-  font-variant-east-asian: proportional-width;
-}
-
-
-
+.safe-block{text-align:center;margin-top:14px}
+.safe-cn{color:#199c69;font-size:16px;font-weight:700;margin-bottom:2px}
+.safe-en{color:#7aa694;font-size:12px}
 .footer{margin-top:12px;color:rgba(255,255,255,.7);font-size:12px;text-align:center}
 
 /* 响应 */
@@ -268,10 +209,6 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
-
-
-
-
 
 
 
