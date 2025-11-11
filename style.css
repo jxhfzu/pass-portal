@@ -231,7 +231,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 /* logo 样式 */
 .footer-logo {
-  height: 14px;          /* ✅ 调小整体高度 */
+  height: 18px;          /* ✅ 调小整体高度 */
   width: auto;           
   vertical-align: middle;
   object-fit: contain;
@@ -249,9 +249,10 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 /* 手机端稍微放大一点，避免太小 */
 @media (max-width: 480px) {
-  .footer-logo { height: 20px; }
+  .footer-logo { height: 26px; }
   .footer-text { font-size: 13px; }
 }
+
 
 
 
