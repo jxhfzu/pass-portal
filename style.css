@@ -210,6 +210,46 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 }
 
+/* 页脚整体 */
+.footer {
+  margin-top: 16px;
+  color: rgba(255,255,255,.85);
+  font-size: 13px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0 16px;
+}
+
+/* 内部内容块，控制文字和 logo 的布局 */
+.footer-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;             /* logo 与文字间距 */
+}
+
+/* logo 样式 */
+.footer-logo {
+  height: 18px;         /* ✅ 控制高度（建议 16~20px） */
+  width: auto;          /* 按原比例缩放 */
+  vertical-align: middle;
+  object-fit: contain;
+  opacity: 0.9;         /* 稍微淡一点以协调背景 */
+}
+
+/* 文字 */
+.footer-text {
+  font-weight: 500;
+  white-space: nowrap;  /* 防止换行 */
+}
+
+/* 手机端稍微放大一点，避免太小 */
+@media (max-width: 480px) {
+  .footer-logo { height: 20px; }
+  .footer-text { font-size: 13px; }
+}
+
 
 
 
