@@ -203,6 +203,16 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 
 /* 提示行（虚线 + 一行显示） */
+.hint-line{margin-top:14px;text-align:center;color:#cfcfcf;font-size:12px;display:flex;
+           white-space: nowrap; /* ✅ 防止文字换行 */
+           justify-content:center;gap:10px}
+.info-row{display:flex;justify-content:space-between;border-bottom:1px solid #eff2f3;padding:12px 4px}
+.info-row .left{color:#5b6a66;font-size:14px}
+.info-row .right{color:#333;font-weight:600;font-size:14px}
+
+
+
+
 /* .hint-line {
   margin-top: 14px;
   text-align: center;
@@ -228,70 +238,6 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   display: inline-block;
   line-height: 1.2;
 }*/
-
-
-
-
-
-/* ---------- 提示行：虚线受文字宽度控制（JS 配合） ---------- */
-.hint-line {
-  position: relative;
-  margin: 14px auto 0;
-  width: calc(100% - 36px); /* 与卡片内边距匹配：左右各 18px */
-  max-width: 420px;         /* 不要太长（按需调整） */
-  text-align: center;
-  font-size: 12px;
-  color: #cfcfcf;
-  box-sizing: border-box;
-  white-space: nowrap;
-}
-
-/* 整体虚线使用伪元素：左右两段，长度由 CSS 变量 --hint-gap 控制（由 JS 计算） */
-.hint-line::before,
-.hint-line::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 0;                  /* 伪元素本身不占高度 */
-  border-top: 1px dashed #dcdcdc;
-  box-sizing: border-box;
-  z-index: 0;                 /* 在文字下方 */
-  pointer-events: none;
-}
-
-/* 左线从左侧到文字左半边截断 */
-.hint-line::before {
-  left: 0;
-  right: calc(50% + var(--hint-gap, 120px) / 2);
-}
-
-/* 右线从文字右半边到右侧截断 */
-.hint-line::after {
-  left: calc(50% + var(--hint-gap, 120px) / 2);
-  right: 0;
-}
-
-/* 中间文字使用白底遮挡虚线，使视觉断开并完全居中 */
-.hint-line > span {
-  position: relative;
-  z-index: 1;
-  display: inline-block;
-  background: #fff;        /* 与白色卡片背景一致 */
-  padding: 0 12px;         /* 文字与虚线间距，可按需减小 */
-  line-height: 1.2;
-  white-space: nowrap;
-  color: #cfcfcf;
-  font-size: 12px;
-}
-
-/* 窄屏自适应：缩小 gap/padding 防止覆盖 */
-@media (max-width: 420px) {
-  .hint-line { width: calc(100% - 28px); max-width: 360px; }
-  .hint-line > span { padding: 0 8px; font-size: 11px; }
-}
-
-
 
 
 
@@ -354,6 +300,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
 
