@@ -198,63 +198,66 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 .info-row .right{color:#333;font-weight:600;font-size:14px}
 
 /* 安全提示与页脚 */
-/* 包裹两行文本的容器：保持宽度等于内部最长一行（inline-block 的特性）*/
+/* 外层：居中显示宽度由 JS 控制 */
 .safe-block {
   margin-top: 14px;
-  text-align: center;   /* 将 inline-block 居中 */
+  text-align: center;
 }
 
-/* 这个容器宽度等于最长子项，保证两行左右边对齐 */
+/* 内层容器：宽度将被 JS 设为两行的最大宽度 */
 .safe-text {
-  display: inline-block;   /* 宽度 = max(child widths) */
+  display: inline-block;
   text-align: center;
   line-height: 1.1;
+  /* 平滑过渡（可选）让变化不突兀 */
+  transition: width 120ms ease;
 }
 
-/* 两行都占满容器宽度，便于“头尾对齐” */
+/* 两行都占满容器宽度，便于左右头尾对齐 */
 .safe-cn,
 .safe-en {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  white-space: nowrap;    /* 防止自动换行打断对齐 */
+  white-space: nowrap; /* 防止换行 */
 }
 
-/* 中文行样式 */
+/* 中文行：统一字体族（包含中英），但逗号会单独用 ascii span 强制西文字体 */
 .safe-cn {
   color: #199c69;
   font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.3px;
-  /* 避免 CJK 环境把西文标点强制全角化 */
-  font-variant-east-asian: proportional-width;
+  letter-spacing: 0.2px;
+  /* 给中文优先字体（若手机有 PingFang/系统字体会优先）*/
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
   -webkit-font-variant-east-asian: proportional-width;
+  font-variant-east-asian: proportional-width;
 }
 
-/* 英文行样式（可微调字距以更好匹配中文宽度）*/
+/* 英文行：与中文行使用相似的字体线性与字间，以便长度更接近 */
 .safe-en {
   color: #7aa694;
   font-size: 13px;
   margin-top: 6px;
-  letter-spacing: 0.35px; /* 根据需要微调 */
+  letter-spacing: 0.35px;
   font-weight: 500;
+  font-family: "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  -webkit-font-variant-east-asian: proportional-width;
   font-variant-east-asian: proportional-width;
 }
 
-/* 强制把包裹逗号的 span 使用西文字体，确保半角逗号 glyph */
+/* 关键：强制逗号使用西文字体 glyph，防止 CJK 排版替换或不同渲染 */
 .safe-cn .ascii {
-  font-family: Arial, "Helvetica Neue", "Noto Sans", sans-serif;
-  font-variant-east-asian: proportional-width;
-  font-size: 0.95em;     /* 大小与中文视觉相协调（按需调） */
+  font-family: "Helvetica Neue", Arial, "Noto Sans", sans-serif; /* 西文字体 */
   display: inline-block;
-  transform: translateY(0.06em); /* 微调竖直位置，和中文基线更贴合 */
+  font-size: 0.95em;             /* 与中文字号协调 */
+  line-height: 1;
+  transform: translateY(0.03em); /* 竖直微调，如需可改为 0.05em / 0 */
+  letter-spacing: 0;             /* 保证逗号不因字间距扩展 */
+  -webkit-font-variant-east-asian: proportional-width;
+  font-variant-east-asian: proportional-width;
 }
 
-/* 可选：在非常小屏上适当缩字体 */
-@media (max-width: 360px) {
-  .safe-cn { font-size: 15px; }
-  .safe-en { font-size: 12px; letter-spacing: 0.25px; }
-}
 
 
 .footer{margin-top:12px;color:rgba(255,255,255,.7);font-size:12px;text-align:center}
@@ -265,6 +268,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
 
