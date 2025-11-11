@@ -245,9 +245,29 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 
 /* 安全提示与页脚 */
-.safe-block{text-align:center;margin-top:14px}
+/* .safe-block{text-align:center;margin-top:14px}
 .safe-cn{color:#199c69;font-size:16px;font-weight:700;margin-bottom:2px}
-.safe-en{color:#7aa694;font-size:12px}
+.safe-en{color:#7aa694;font-size:12px}*/
+
+.safe-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 14px;
+}
+.safe-cn {
+  color: #199c69;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px; /* 可选：增加轻微字距代替手动空格 */
+  margin-bottom: 2px;
+}
+.safe-en {
+  color: #7aa694;
+  font-size: 12px;
+}
+
+
 
 
 
@@ -300,6 +320,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
 
