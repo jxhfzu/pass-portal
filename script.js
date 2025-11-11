@@ -5,7 +5,7 @@ const DEFAULTS = {
   dept: "土木工程学院",
   period: "01-01 00:00 至 12-30 23:59",
   vehicle: "驾驶汽车 (闽A220AG)",
-  campus: "所有校区,"
+  campus: "所有校区"
 };
 
 // 简单工具：读 query
@@ -165,7 +165,6 @@ startClock();
 
 // 启动：优先从 URL 参数初始化
 initFromQuery();
-
 
 
 
