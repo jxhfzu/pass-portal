@@ -253,6 +253,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   border-bottom: 1px dashed #dcdcdc; /* 虚线 */
   margin: 0;             /* 与文字的间距由 .hint-line 的 gap 控制 */
   min-width: 24px;       /* 防止在超窄屏上线条完全消失 */
+  transform: translateY(0.15em); /* ✅ 向上微调，让线条与文字居中对齐，一般 0.12em ~ 0.18em 是最自然的范围 */
 }
 
 /* 中间文字样式（保持 inline-block 以便对齐） */
@@ -330,6 +331,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
 
