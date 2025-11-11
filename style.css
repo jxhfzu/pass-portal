@@ -232,8 +232,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 
 
-
-/* ---------- 提示线（改为虚线+单行显示） ---------- */
+/* ---------- 提示行：两侧虚线 + 文字强制不换行 ---------- */
 .hint-line {
   margin-top: 14px;
   text-align: center;
@@ -242,26 +241,34 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   display: flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap; /* 保证文字在一行内 */
+  white-space: nowrap;       /* 强制不换行 */
+  gap: 12px;                 /* 中间文字与伪线间距 */
 }
 
-/* 左右两条虚线 */
+/* 用伪元素绘制左右虚线（flex:1 会自动拉伸） */
 .hint-line::before,
 .hint-line::after {
   content: "";
-  flex: 1;
-  border-bottom: 1px dashed #cfcfcf; /* ✅ 虚线样式 */
-  margin: 0 10px; /* 与文字间距 */
+  flex: 1 1 auto;
+  border-bottom: 1px dashed #dcdcdc; /* 虚线 */
+  margin: 0;             /* 与文字的间距由 .hint-line 的 gap 控制 */
+  min-width: 24px;       /* 防止在超窄屏上线条完全消失 */
 }
 
-/* 中间的文字 */
-.hint-line span {
+/* 中间文字样式（保持 inline-block 以便对齐） */
+.hint-line > span {
   display: inline-block;
   line-height: 1.2;
+  padding: 0 6px;        /* 文字左右的呼吸空间 */
+  white-space: nowrap;   /* 再次保证不换行 */
+  font-size: 12px;
+  color: #cfcfcf;
 }
 
-
-
+/* 极窄屏上的安全保护：如果父容器宽度太窄，缩小字体而不换行 */
+@media (max-width: 320px) {
+  .hint-line > span { font-size: 11px; padding: 0 4px; }
+}
 
 
 
@@ -323,6 +330,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
 
