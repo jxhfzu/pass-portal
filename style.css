@@ -199,6 +199,11 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 /* 安全提示与页脚 */
 .safe-block{text-align:center;margin-top:14px}
+.safe-text {
+  display: inline-block;
+  width: 240px; /* ✅ 自行微调，让中英文长度匹配 */
+  text-align: center;
+}
 .safe-cn{color:#199c69;font-size:16px;font-weight:700;margin-bottom:2px}
 .safe-en{color:#7aa694;font-size:12px}
 .footer{margin-top:12px;color:rgba(255,255,255,.7);font-size:12px;text-align:center}
@@ -209,6 +214,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
 
