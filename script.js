@@ -163,51 +163,8 @@ function startClock(){
 }
 startClock();
 
-
-// 这段脚本负责：页面加载或窗口大小变化时，测量 .safe-cn 和 .safe-en 的渲染宽度，取最大值并把 .safe-text 的宽度设为这个值，从而保证两行左右对齐（视觉上的头尾对齐）。
-<script>
-(function(){
-  const safeText = document.getElementById('safeText');
-  const safeCn = document.getElementById('safeCn');
-  const safeEn = document.getElementById('safeEn');
-
-  if (!safeText || !safeCn || !safeEn) return;
-
-  function setSafeWidth(){
-    // 先清除手动宽度以便测量真实自然宽度
-    safeText.style.width = 'auto';
-    // getBoundingClientRect 更可靠（包含 subpixel）
-    const wCn = Math.ceil(safeCn.getBoundingClientRect().width);
-    const wEn = Math.ceil(safeEn.getBoundingClientRect().width);
-    const maxW = Math.max(wCn, wEn);
-    // 设定一点最小值保护（避免过窄）
-    const minWidth = 120;
-    safeText.style.width = (Math.max(maxW, minWidth)) + 'px';
-  }
-
-  // 在字体加载后和页面 load 时执行
-  window.addEventListener('load', setSafeWidth);
-  // 放在 DOMContentLoaded 也可帮助早期执行
-  document.addEventListener('DOMContentLoaded', setSafeWidth);
-
-  // resize 时实时更新（带节流）
-  let rTimer = null;
-  window.addEventListener('resize', function(){
-    clearTimeout(rTimer);
-    rTimer = setTimeout(setSafeWidth, 120);
-  });
-
-  // 如果页面会动态改变文本（例如语言切换），可暴露一个方法：
-  window.__recalcSafeText = setSafeWidth;
-})();
-</script>
-
-
-
-
 // 启动：优先从 URL 参数初始化
 initFromQuery();
-
 
 
 
