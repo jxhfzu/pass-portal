@@ -233,67 +233,55 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
 
 
 
-/* ---------- 提示行：绝对定位伪元素，线条与文字严格垂直居中 ---------- */
+/* ---------- 提示行：虚线限制在卡片内，文字在一行并与线严格居中 ---------- */
 .hint-line {
-  position: relative;          /* 伪元素绝对定位的参照 */
-  margin-top: 14px;
+  position: relative;
+  margin: 14px auto 0;
+  width: calc(100% - 36px); /* 留出卡片左右内边距（按需改数值） */
+  max-width: 360px;         /* 限制线的最大宽度，保证在大屏上不太长（按需调整） */
   text-align: center;
-  color: #cfcfcf;
   font-size: 12px;
-  display: inline-flex;        /* 内部宽度随文本变化，居中时父容器会把它居中 */
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;         /* 强制不换行 */
-  padding: 0 8px;              /* 给左右伪线留出最小横向间距 */
-  width: 100%;                 /* 保持与父容器同宽（通常父容器是卡片宽） */
+  color: #cfcfcf;
+  display: block;
+  white-space: nowrap;      /* 强制不换行 */
   box-sizing: border-box;
 }
 
-/* 文本本身：行高与字体确定文字中线位置 */
+/* 伪元素：一条从左到右的虚线，放在容器中线位置 */
+.hint-line::before,
+.hint-line::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 0;
+  border-top: 1px dashed #dcdcdc;
+  width: 100%;
+  left: 0;
+  box-sizing: border-box;
+  pointer-events: none;
+  z-index: 0; /* 在文字下面 */
+}
+
+/* 中间文字：用白色背景把线“遮住”，实现断开效果并保证视觉居中 */
 .hint-line > span {
+  position: relative;
   display: inline-block;
-  line-height: 1;              /* 重要：让文字的高度与字体相关，方便垂直居中计算 */
-  padding: 0 12px;             /* 文本左右间距（与伪线间距） */
+  background: #fff;          /* 与白色卡片背景一致，遮住伪元素的线 */
+  padding: 0 10px;           /* 文字左右留白（控制线与文字的距离） */
+  z-index: 1;                /* 在伪元素上方 */
+  line-height: 1.2;
   white-space: nowrap;
   color: #cfcfcf;
   font-size: 12px;
 }
 
-/* 绝对定位的伪元素，使用 border-top 绘制虚线并严格放在容器垂直中线 */
-.hint-line::before,
-.hint-line::after {
-  content: "";
-  position: absolute;
-  top: 50%;                    /* 垂直位置在容器中点 */
-  transform: translateY(-50%); /* 精确居中（把伪元素的上边移回半高） */
-  height: 0;                   /* 伪元素自身不占高度 */
-  border-top: 1px dashed #dcdcdc;
-  width: calc(50% - 110px);    /* 线条长度：左右各占一半并扣除文本区域宽（调整110px以匹配你的文本宽度） */
-  box-sizing: border-box;
-}
-
-/* 左伪元素贴左、右伪元素贴右 */
-.hint-line::before { left: 12px; }   /* 从左侧开始画线，12px 与 .hint-line padding 对齐 */
-.hint-line::after  { right: 12px; }  /* 从右侧开始画线 */
-
-/* ---- 自适应提示 ----
-   上面 width: calc(50% - 110px) 是一个通用计算：50% = 一半容器宽，
-   减去大约文本区域 (110px) 以保证在中间给文字留出空隙。
-   若你文字更长/更短，请微调 110px 的值：减少值让线更长，增大值让线更短。
-*/
-
-/* 在非常窄屏上缩短线/减小间距，避免覆盖文字 */
+/* 在窄屏上缩短整体宽度，避免遮挡或换行 */
 @media (max-width: 420px) {
-  .hint-line::before,
-  .hint-line::after {
-    width: calc(50% - 70px);
-  }
+  .hint-line { width: calc(100% - 28px); max-width: 300px; }
   .hint-line > span { padding: 0 8px; font-size: 11px; }
 }
 
-/* 在超窄屏时若仍出问题，可改为固定像素长度（示例）：
-.hint-line::before, .hint-line::after { width: 140px; }
-*/
 
 
 
@@ -357,6 +345,7 @@ button.muted{background:rgba(0,0,0,0.45);color:#fff}
   .big-title{font-size:56px}
 
 }
+
 
 
 
