@@ -34,7 +34,26 @@ const out = {
 
 let currentUrl = location.href.split('?')[0] + '?'; // 基础 url（没有参数）
 
-// 初始化：如果 URL 有参数则先填入输入框并显示
+/* ---------- 辅助函数 ---------- */
+// 把 ArrayBuffer/TypedArray 转为 Base64 字符串
+function ab2b64(buf){
+  const u8 = buf instanceof Uint8Array ? buf : new Uint8Array(buf);
+  let binary = '';
+  const chunk = 0x8000;
+  for (let i = 0; i < u8.length; i += chunk) {
+    binary += String.fromCharCode.apply(null, Array.from(u8.subarray(i, i + chunk)));
+  }
+  return btoa(binary);
+}
+
+// 把普通字符串 base64 编码（兼容 UTF-8）
+function strToBase64Utf8(str){
+  // 先把 UTF-8 字符串转为 Uint8Array，再 base64
+  const encoder = new TextEncoder();
+  return ab2b64(encoder.encode(str));
+}
+
+/* ---------- 初始化：如果 URL 有参数则先填入输入框并显示 ---------- */
 function initFromQuery(){
   const name = q('name') || DEFAULTS.name;
   const target = q('target') || DEFAULTS.target;
@@ -54,71 +73,83 @@ function initFromQuery(){
   applyValuesToCard({name, target, dept, period, vehicle, campus});
 }
 
-// 把值渲染到卡片并生成二维码（也会更新 URL query）
-function applyValuesToCard(vals){
-  const safe = {
-    name: vals.name || DEFAULTS.name,
-    target: vals.target || DEFAULTS.target,
-    dept: vals.dept || DEFAULTS.dept,
-    period: vals.period || DEFAULTS.period,
-    vehicle: vals.vehicle || DEFAULTS.vehicle,
-    campus: vals.campus || DEFAULTS.campus
-  };
+/* 把值渲染到卡片并生成二维码（也会更新 URL query） */
+async function applyValuesToCard(vals){
+  try {
+    const safe = {
+      name: vals.name || DEFAULTS.name,
+      target: vals.target || DEFAULTS.target,
+      dept: vals.dept || DEFAULTS.dept,
+      period: vals.period || DEFAULTS.period,
+      vehicle: vals.vehicle || DEFAULTS.vehicle,
+      campus: vals.campus || DEFAULTS.campus
+    };
 
-  out.name.textContent = safe.name;
-  out.target.textContent = safe.target;
-  out.dept.textContent = safe.dept;
-  out.period.textContent = safe.period;
-  out.vehicle.textContent = safe.vehicle;
-  out.campus.textContent = safe.campus;
+    out.name.textContent = safe.name;
+    out.target.textContent = safe.target;
+    out.dept.textContent = safe.dept;
+    out.period.textContent = safe.period;
+    out.vehicle.textContent = safe.vehicle;
+    out.campus.textContent = safe.campus;
 
-  // 生成带参数的 URL（方便扫码后显示同一信息）
-  const url = new URL(window.location.href.split('?')[0]);
-  url.searchParams.set('name', safe.name);
-  url.searchParams.set('target', safe.target);
-  url.searchParams.set('dept', safe.dept);
-  url.searchParams.set('period', safe.period);
-  url.searchParams.set('vehicle', safe.vehicle);
-  url.searchParams.set('campus', safe.campus);
-  url.searchParams.set('t', Date.now());
-  currentUrl = url.toString();
+    // 生成带参数的 URL（方便扫码后显示同一信息）
+    const url = new URL(window.location.href.split('?')[0]);
+    url.searchParams.set('name', safe.name);
+    url.searchParams.set('target', safe.target);
+    url.searchParams.set('dept', safe.dept);
+    url.searchParams.set('period', safe.period);
+    url.searchParams.set('vehicle', safe.vehicle);
+    url.searchParams.set('campus', safe.campus);
+    url.searchParams.set('t', Date.now());
+    currentUrl = url.toString();
 
-  // 二维码
-  makeQRCode(currentUrl);
+    // --------------- 生成 payload 并用于二维码（增加密度） ---------------
+    // 生成 16 字节随机盐并转为 Base64 字符串（避免把 Uint8Array 放入 JSON）
+    const randBytes = crypto.getRandomValues(new Uint8Array(16));
+    const randB64 = ab2b64(randBytes.buffer);
 
-  // 同步浏览器地址栏（不刷新页面）
-  history.replaceState(null, '', url.toString());
+    // payload：包含必要字段 + 随机盐 r（可删掉某些字段以更短）
+    const payload = {
+      n: safe.name,
+      t: Date.now(),
+      p: safe.period,
+      d: safe.dept,
+      r: randB64
+    };
+
+    // 把 payload JSON 序列化后再做 Base64（UTF-8 安全）
+    const token = strToBase64Utf8(JSON.stringify(payload));
+
+    // 可选：重复两次（你的示例也是重复两段），也可以只用 token
+    const finalContent = token + token;
+
+    // 二维码（使用 finalContent）
+    makeQRCode(finalContent);
+
+    // 同步浏览器地址栏（不刷新页面）
+    history.replaceState(null, '', url.toString());
+  } catch (err) {
+    console.error('applyValuesToCard 出错：', err);
+    alert('生成二维码时发生错误，详见控制台（F12）');
+  }
 }
 
-// 生成二维码（使用 qrcode.js）
+/* 生成二维码（使用 qrcode.js） */
 function makeQRCode(text){
   out.qrcode.innerHTML = '';
   new QRCode(out.qrcode, {
-  text: "VIS_" + Date.now().toString(36),  // 超短内容
-  width: 180,
-  height: 180,
-  colorDark: "#35ae81",    // 深绿色二维码
-  colorLight: "#ffffff",   // 白色背景
-  correctLevel: QRCode.CorrectLevel.H
-});
+    text: text,
+    width: 200,   // 稍微大一点，便于扫描
+    height: 200,
+    colorDark: "#35ae81",    // 深绿色二维码
+    colorLight: "#ffffff",   // 白色背景
+    correctLevel: QRCode.CorrectLevel.H
+  });
   // 可以同时生成下载链接（如果需要）
 }
 
-
-  //增加密度，把 payload 稍微加一点无关字段
-const payload = {
-  n: safe.name,
-  t: Date.now(),
-  p: safe.period,
-  d: safe.dept,
-  r: crypto.getRandomValues(new Uint8Array(16))  // 添加 16 字节随机盐
-};
-
-
-
-
 // 表单按钮事件
-document.getElementById('btn-generate').addEventListener('click', ()=>{
+document.getElementById('btn-generate').addEventListener('click', async ()=>{
   const vals = {
     name: inputs.name.value.trim(),
     target: inputs.target.value.trim(),
@@ -133,7 +164,7 @@ document.getElementById('btn-generate').addEventListener('click', ()=>{
     inputs.name.focus();
     return;
   }
-  applyValuesToCard(vals);
+  await applyValuesToCard(vals);
 });
 
 // 清除按钮（恢复默认并清空 query）
@@ -176,16 +207,5 @@ function startClock(){
 }
 startClock();
 
-
-
-
-
 // 启动：优先从 URL 参数初始化
 initFromQuery();
-
-
-
-
-
-
-
