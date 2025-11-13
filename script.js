@@ -94,7 +94,8 @@ function applyValuesToCard(vals){
 function makeQRCode(text){
   out.qrcode.innerHTML = '';
   new QRCode(out.qrcode, {
-  text: "VIS_" + Date.now().toString(36),  // 超短内容
+  // text: "VIS_" + Date.now().toString(36),  // 超短内容
+  text: "VIS_" + Date.now().toString(36) + "_" + encodeURIComponent(safe.name),
   width: 180,
   height: 180,
   colorDark: "#35ae81",    // 深绿色二维码
@@ -169,6 +170,7 @@ startClock();
 
 // 启动：优先从 URL 参数初始化
 initFromQuery();
+
 
 
 
