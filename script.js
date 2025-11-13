@@ -104,6 +104,19 @@ function makeQRCode(text){
   // 可以同时生成下载链接（如果需要）
 }
 
+
+  //增加密度，把 payload 稍微加一点无关字段
+const payload = {
+  n: safe.name,
+  t: Date.now(),
+  p: safe.period,
+  d: safe.dept,
+  r: crypto.getRandomValues(new Uint8Array(16))  // 添加 16 字节随机盐
+};
+
+
+
+
 // 表单按钮事件
 document.getElementById('btn-generate').addEventListener('click', ()=>{
   const vals = {
@@ -169,6 +182,7 @@ startClock();
 
 // 启动：优先从 URL 参数初始化
 initFromQuery();
+
 
 
 
